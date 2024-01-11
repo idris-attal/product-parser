@@ -4,7 +4,7 @@
     Ensure you have PHP installed.
     Save your CSV file as `example_1.csv`.
 ------------------------------------------------------------------------------
-    Run the script using the command:
+### Run the script using the command:
      product-parser.php --file example_1.csv --unique-combinations combination_count.csv
 ------------------------------------------------------------------------------
 
@@ -14,7 +14,7 @@
     try to put `test_combination_count.csv` for the --unique-combinations inside the running command or just copy the command as desribed below.
 
 ------------------------------------------------------------------------------
-    Run the tests script using the command: 
+### Run the tests script using the command: 
     php product-parser-tests.php --file test_example_1.csv --unique-combinations test_combination_count.csv
 ------------------------------------------------------------------------------
 
