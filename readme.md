@@ -11,7 +11,8 @@
 ## To run the tests in provided example:
     Ensure you have PHP installed.
     use the CSV file named as `test_example_1.csv` or create yours with such name
-    try to put `test_combination_count.csv` for the --unique-combinations inside the running command or just copy the command as desribed below.
+    try to put `test_combination_count.csv` for the --unique-combinations inside 
+    the running command or just copy the command as desribed below.
 
 ------------------------------------------------------------------------------
 ### Run the tests script using the command: 
