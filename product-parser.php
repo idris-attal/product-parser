@@ -26,22 +26,38 @@ class Product
 // parser class
 class Parser
 {
-    public function parseFile($filename)
-    {
-        $extension = pathinfo($filename, PATHINFO_EXTENSION);
+    public $argvValue;
 
-        switch (strtolower($extension)) {
-            case 'csv':
-                $this->parseCSV($filename);
-                break;
-            case 'json':
-                $this->parseJSON($filename);
-                break;
-            case 'xml':
-                $this->parseXML($filename);
-                break;
-            default:
-                throw new Exception("Unsupported file format: $extension");
+    public function __construct($argv)
+    {
+        global $argv;
+        $this->argvValue = $argv;
+    }
+
+    public function parseFile()
+    {
+        global $argv;
+
+        if (isset($this->argvValue) && count($this->argvValue) >= 5) {
+            $filename = $this->argvValue[2];
+            $extension = pathinfo($filename, PATHINFO_EXTENSION);
+
+            switch (strtolower($extension)) {
+                case 'csv':
+                    $this->parseCSV($filename);
+                    break;
+                case 'json':
+                    $this->parseJSON($filename);
+                    break;
+                case 'xml':
+                    $this->parseXML($filename);
+                    break;
+                default:
+                    throw new Exception("Unsupported file format: $extension");
+            }
+
+        } else {
+            throw new Exception("Please provide a valid expected flags using the '--file' and '--unique-combinations' as a command-line arguments.\n");
         }
     }
 
@@ -63,7 +79,7 @@ class Parser
             fclose($file);
 
             // Write unique combinations to a file
-            $this->writeUniqueCombinationsToFile("combination_count.csv");
+            $this->writeUniqueCombinationsToFile($this->argvValue[4] ?? "combination_count.csv");
         } else {
             echo "Error opening file: $filename";
         }
@@ -105,7 +121,7 @@ class Parser
     private function displayProduct($product)
     {
         // Display product information
-        var_dump($product);
+        // print_r($product);
     }
 
     private $uniqueCombinations = [];
@@ -151,5 +167,5 @@ class Parser
 }
 
 // calling for usage
-$parser = new Parser();
-$parser->parseFile("example_1.csv");
+$parser = new Parser($argv);
+$parser->parseFile();
